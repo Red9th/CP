@@ -1,0 +1,23 @@
+#define LL long long
+#define PII pair<int, int>
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+
+void solve() {
+    cin >> n;
+    for(int i = 0; i < n; i ++) {
+        
+    }
+}
+
+int main() {
+    int t = 1;
+    // cin >> t;
+    while(t --) {
+        solve();
+    }
+    return 0;
+}
