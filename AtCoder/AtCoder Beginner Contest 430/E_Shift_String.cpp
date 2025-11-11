@@ -30,9 +30,8 @@ PII operator * (PII a, PII b) {
 
 PII pw[N], sp[N], sf[N];
 
-PII get(PII *h, LL l, LL r, int g = 0) {
-    if(g == 0) return (h[r] - h[l - 1] * pw[r - l + 1]);
-    else return (h[r] - h[l + 1] * pw[l - r + 1]);
+PII get(PII *h, LL l, LL r) {
+    return (h[r] - h[l - 1] * pw[r - l + 1]);
 }
 
 void solve() {

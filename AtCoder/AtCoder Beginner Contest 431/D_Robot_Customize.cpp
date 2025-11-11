@@ -10,7 +10,6 @@ vector<TUP> a;
 
 void solve() {
     cin >> n;
-    long long sum = 0;
     int ws = 0;
     for(int i = 0; i < n; i ++) {
         int w, h, b;
@@ -18,17 +17,28 @@ void solve() {
         a.push_back({w, h, b});
         ws += w;
     }
-    sort(a.begin(), a.end());
 
-    for(int i = 0; i <= ws; i ++) {
-        int cnt = 0;
-        for(int j = 0; j < n; j ++) {
-            if(cnt >= j) {
-                
-                break;
+    vector<vector<LL>> f(n + 1, vector<LL>(ws + 1, -1));
+    f[0][0] = a[0][2];
+    f[0][a[0][0]] = a[0][1];
+    for(int i = 1; i < n; i ++) {
+        for(int j = 0; j <= ws; j ++) {
+            auto [w, h, b] = a[i];
+            f[i][j] = max(f[i][j], f[i - 1][j] + b);
+            if(j >= w && f[i - 1][j - w] != -1) {
+                f[i][j] = max(f[i][j], f[i - 1][j - w] + h);
             }
-        }       
+        }
     }
+
+    LL ans = 0;
+    for(int i = 0; i <= ws; i ++) {
+        int j = ws - i;
+        if(i <= j && f[n - 1][i] != -1) {
+            ans = max(ans, f[n - 1][i]);
+        }
+    }
+    cout << ans;
 }
 
 int main() {
